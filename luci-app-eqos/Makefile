@@ -18,7 +18,7 @@ PKG_RELEASE:=2
 
 PKG_MAINTAINER:=Jianhui Zhao <jianhuizhao329@gmail.com>
 
-include $(TOPDIR)/feeds/luci/luci.mk
+include ../../luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature
 
