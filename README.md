@@ -41,18 +41,18 @@ make menuconfig
 | luci-app-aliyundrive-fuse | 阿里云盘 Fuse 服务 |
 | luci-app-aliyundrive-webdav | 阿里云盘 WebDAV 服务 |
 | luci-app-amlogic | 晶晨宝盒 |
-| luci-theme-argon | 老竭力开发的主题 Argon |
+| luci-theme-argon | 老竭力开发的 Argon 主题 |
 | luci-app-argon-config | Argon 主题设置，需搭配 Argon 主题使用 |
 | luci-app-bypass | Bypass 科学上网插件 |
 | luci-app-ddnsto | DDNSTO 内网穿透 |
 | luci-app-dockerman | Docker 图形化插件 |
 | luci-app-eqos | IP 限速插件 |
-| Luci-app-filebrowser | 文件管理器 |
+| luci-app-filebrowser | 文件浏览器 |
 | luci-app-ikoolproxy | iKoolProxy 滤广告  |
-| luci-app-mosdns | DNS 国内外分流解析与广告过滤 |
+| luci-app-mosdns | DNS 分流解析与广告过滤 |
 | luci-app-netdata | 中文版 Netdata 监控 |
 | luci-app-oaf | 应用过滤 |
-| Luci-app-onliner | 在线用户 |
+| luci-app-onliner | 在线用户 |
 | luci-app-openclash | OpenClash 小猫咪科学上网插件 |
 | luci-app-passwall | PassWall 科学上网插件 |
 | luci-app-passwall2 | PassWall2 科学上网插件 |
