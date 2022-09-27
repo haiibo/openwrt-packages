@@ -516,11 +516,6 @@ header > .container > a[class="brand"]:after {
     color: #8965e0!important;
 }
 
-.main > .main-left > .nav > .slide > a[data-title="iStore"]:before {
-    content: "\e022";
-    color: #5F68EA!important;
-}
-
 .main > .main-left > .nav > .slide > a[data-title="VPN"]:before {
     content: "\e029";
     color: #5F9EA0!important;
@@ -542,7 +537,7 @@ header > .container > a[class="brand"]:after {
 }
 
 .main > .main-left > .nav > .slide > a[data-title="Control"]:before {
-    content: "\e023";
+    content: "\e024";
     color: #3CB371!important;
 }
 
