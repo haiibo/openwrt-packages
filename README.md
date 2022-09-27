@@ -34,7 +34,7 @@ make menuconfig
 ### 插件说明
 | 插件 | 说明 |
 | ------------- | ------------- |
-| helloworld | SSR Plus+ PassWall 等科学上网依赖 |
+| helloworld | SSR Plus+ PassWall 插件依赖 |
 | luci-app-adguardhome | AdGuard Home 去广告 |
 | luci-app-advanced | 系统高级设置 |
 | luci-app-aliddns | 阿里云 DDNS 插件 |
@@ -45,10 +45,9 @@ make menuconfig
 | luci-app-argon-config | Argon 主题设置，需搭配 Argon 主题使用 |
 | luci-app-bypass | Bypass 科学上网插件 |
 | luci-app-ddnsto | DDNSTO 内网穿透 |
-| luci-app-dnsfilter | 基于DNS的广告过滤 |
-| luci-app-dockerman | Docker 插件 |
+| luci-app-dockerman | Docker 图形化插件 |
 | luci-app-eqos | IP 限速插件 |
-| luci-app-ikoolproxy | ikoolproxy 去广告  |
+| luci-app-ikoolproxy | iKoolProxy 滤广告  |
 | luci-app-mosdns | DNS 国内外分流解析与广告过滤 |
 | luci-app-netdata | 中文版 Netdata 监控 |
 | luci-app-oaf | 应用过滤 |
