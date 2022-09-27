@@ -14,15 +14,23 @@
 - 科学上网依赖全部同步在 `helloworld` 目录内，无需再额外拉取
 - 所有插件都为 GITHUB 上收集的开源插件，感谢作者们的付出
 
-### 使用方法
-```yaml
-sed -i '$a src-git kenzo https://github.com/haiibo/openwrt-packages' feeds.conf.default
+### 使用方法一
+```
+sed -i 'src-git haibo https://github.com/haiibo/openwrt-packages' feeds.conf.default
 git pull
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 make menuconfig
 ```
 
+### 使用方法二
+```
+git clone https://github.com/haiibo/openwrt-packages package/openwrt-packages
+./scripts/feeds update -a
+./scripts/feeds install -a
+make menuconfig
+``` 
+ 
 ### 插件说明
 | 插件 | 说明 |
 | ------------- | ------------- |
@@ -57,4 +65,4 @@ make menuconfig
 | luci-app-vssr | Hello World 科学上网插件 |
 
 ### Stargazers Over Time
-[![Stargazers over time](https://starchart.cc/haiibo/openwrt-packages.svg)](https://starchart.cc/haiibo/openwrt-packages)
+[![Stargazers Over Time](https://starchart.cc/haiibo/openwrt-packages.svg)](https://starchart.cc/haiibo/openwrt-packages)
