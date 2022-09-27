@@ -55,3 +55,6 @@ make menuconfig
 | luci-app-store | iStore 应用商店 |
 | luci-app-unblockneteasemusic | 解除网易云音乐播放限制 |
 | luci-app-vssr | Hello World 科学上网插件 |
+
+### Stargazers Over Time
+[![Stargazers over time](https://starchart.cc/haiibo/openwrt-packages.svg)](https://starchart.cc/haiibo/openwrt-packages)
