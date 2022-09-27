@@ -47,10 +47,12 @@ make menuconfig
 | luci-app-ddnsto | DDNSTO 内网穿透 |
 | luci-app-dockerman | Docker 图形化插件 |
 | luci-app-eqos | IP 限速插件 |
+| Luci-app-filebrowser | 文件管理器 |
 | luci-app-ikoolproxy | iKoolProxy 滤广告  |
 | luci-app-mosdns | DNS 国内外分流解析与广告过滤 |
 | luci-app-netdata | 中文版 Netdata 监控 |
 | luci-app-oaf | 应用过滤 |
+| Luci-app-onliner | 在线用户 |
 | luci-app-openclash | OpenClash 小猫咪科学上网插件 |
 | luci-app-passwall | PassWall 科学上网插件 |
 | luci-app-passwall2 | PassWall2 科学上网插件 |
@@ -62,6 +64,8 @@ make menuconfig
 | luci-app-store | iStore 应用商店 |
 | luci-app-unblockneteasemusic | 解除网易云音乐播放限制 |
 | luci-app-vssr | Hello World 科学上网插件 |
+| luci-app-wizard | 设置向导 |
+| luci-app-wrtbwmon | 流量监控 |
 
 ### Stargazers Over Time
 [![Stargazers Over Time](https://starchart.cc/haiibo/openwrt-packages.svg)](https://starchart.cc/haiibo/openwrt-packages)
