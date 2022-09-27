@@ -1,6 +1,6 @@
 <div align="center">
 <img width="768" src="https://cdn.jsdelivr.net/gh/haiibo/OpenWrt/images/openwrt.png"/>
-<h1>OpenWrt — 常用插件合集</h1>
+<h1>OpenWrt — 常用插件包合集</h1>
 
 <img src="https://img.shields.io/github/languages/code-size/haiibo/openwrt-packages?style=for-the-badge&color=32C955"/>
 <img src="https://img.shields.io/github/stars/haiibo/openwrt-packages?style=for-the-badge&color=orange"/>
@@ -9,28 +9,30 @@
 </div>
 
 ### 项目说明
-- OpenWrt 常用插件源码合集，适用于 Lean 源码
+- OpenWrt 常用插件包源码合集，适用于 [Lean](https://github.com/coolsnowwolf/lede) 源码
+
 - 自动同步上游源码，一键拉取直接编译，不用再一个个找插件
+
 - 科学上网依赖全部同步在 `helloworld` 目录内，无需再额外拉取
+
 - 所有插件都为 GITHUB 上收集的开源插件，感谢作者们的付出
 
-### 使用方法一
+### 使用方法（以下二选一）
+1. 添加到 feeds.conf.default 文件
 ```
-sed -i 'src-git haibo https://github.com/haiibo/openwrt-packages' feeds.conf.default
-git pull
+sed -i '1isrc-git haibo https://github.com/haiibo/openwrt-packages' feeds.conf.default
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 make menuconfig
 ```
-
-### 使用方法二
+2. 在源码目录内直接拉取
 ```
 git clone https://github.com/haiibo/openwrt-packages package/openwrt-packages
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 make menuconfig
-``` 
- 
+```
+
 ### 插件说明
 | 插件 | 说明 |
 | ------------- | ------------- |
