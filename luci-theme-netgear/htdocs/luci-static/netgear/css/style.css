@@ -490,7 +490,7 @@ header > .container > .brand-hostname {
 }
 
 .main > .main-left > .nav > .slide > a[data-title="Control"]:before {
-    content: "\e024";
+    content: "\e023";
 }
 
 .main > .main-left > .nav > .slide > a[data-title="Docker"]:before {
@@ -499,6 +499,10 @@ header > .container > .brand-hostname {
 
 .main > .main-left > .nav > .slide > a[data-title="NAS"]:before {
     content: "\e00b";
+}
+
+.main > .main-left > .nav > .slide > a[data-title="iStore"]:before {
+    content: "\e022";
 }
 
 .main > .main-left > .nav > .slide > a[data-title="VPN"]:before {
