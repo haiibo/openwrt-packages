@@ -19,17 +19,15 @@
 
 ### 使用方法（以下二选一）
 1. 添加到 feeds.conf.default 文件
-```
-sed -i '1isrc-git haibo https://github.com/haiibo/openwrt-packages' feeds.conf.default
+```yml
+sed -i '1i src-git haibo https://github.com/haiibo/openwrt-packages' feeds.conf.default
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 make menuconfig
 ```
 2. 在源码目录内直接拉取
-```
+```yml
 git clone https://github.com/haiibo/openwrt-packages package/openwrt-packages
-./scripts/feeds update -a
-./scripts/feeds install -a
 make menuconfig
 ```
 
