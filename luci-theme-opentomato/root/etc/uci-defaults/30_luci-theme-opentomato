@@ -3,7 +3,6 @@
 if [ "$PKG_UPGRADE" != 1 ]; then
 	uci batch <<-EOF
 		set luci.themes.opentomato=/luci-static/opentomato
-		set luci.main.mediaurlbase=/luci-static/opentomato
 		commit luci
 	EOF
 fi
