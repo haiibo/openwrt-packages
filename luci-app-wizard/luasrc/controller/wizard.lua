@@ -8,7 +8,7 @@ function index()
 	end
 		local page 
 		page = entry({"admin", "system", "Statistics"}, cbi("wizard/wizard"), _("Inital Setup"), 21)
-		page.i18n = "system", "Statistics"
+		page.i18n = "wizard"
 		page.dependent = true
 
 end
