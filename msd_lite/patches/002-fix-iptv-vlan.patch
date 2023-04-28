@@ -1,0 +1,32 @@
+# Shanghai Telecom IPTV multicast VLAN : eth0.85.
+# Please create the eth0.85 interface on the Luci page first.
+# In other regions, please modify VLAN ID by yourself.
+
+--- a/conf/msd_lite.conf
++++ b/conf/msd_lite.conf
+@@ -17,11 +17,11 @@
+ 
+ <msd>
+ 	<log>
+-		<file>/root/msd_lite/msd_lite.log</file>
++		<file>/dev/null/file>
+ 	</log>
+ 
+ 	<threadPool>
+-		<threadsCountMax>1</threadsCountMax> <!-- 0 = auto -->
++		<threadsCountMax>1</threadsCountMax> <!-- 0 = auto -->
+ 		<fBindToCPU>yes</fBindToCPU> <!-- Bind threads to CPUs. -->
+ 		<fCacheGetTimeSyscall>yes</fCacheGetTimeSyscall> <!-- Cache gettime() syscalls.. -->
+ 		<timerGranularity>100</timerGranularity> <!-- 1/1000 sec -->
+@@ -72,10 +72,9 @@
+ 				<rcvTimeout>2</rcvTimeout> <!-- STATUS, Multicast recv timeout. -->
+ 			</skt>
+ 			<multicast> <!-- For: multicast-udp and multicast-udp-rtp. -->
+-				<ifName>vlan777</ifName> <!-- For multicast receive. -->
++				<ifName>eth0.85</ifName> <!-- For multicast receive. -->
+ 			</multicast>
+ 		</sourceProfile>
+ 	</sourceProfileList>
+ </msd>
+ 
+-

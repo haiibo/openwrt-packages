@@ -1,0 +1,21 @@
+--- a/conf/msd_lite.conf
++++ b/conf/msd_lite.conf
+@@ -31,10 +31,16 @@
+ <!-- HTTP server -->
+ 	<HTTP>
+ 		<bindList>
+-			<bind><address>0.0.0.0:7088</address><fAcceptFilter>y</fAcceptFilter></bind>
+-			<bind><address>[::]:7088</address></bind>
++			<bind>
++                              <address>0.0.0.0:7088</address>
++				<fAcceptFilter>y</fAcceptFilter>
++			</bind>
++			<bind>
++                              <address>[::]:7088</address>
++			</bind>
+ 		</bindList>
+ 
++
+ 		<hostnameList> <!-- Host names for all bindings. -->
+ 			<hostname>*</hostname>
+ 		</hostnameList>
