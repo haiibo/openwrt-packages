@@ -1,6 +1,5 @@
-m = Map("cpulimit", translate("cpulimit"))
-m.description = translate("cpulimit  ")
 
+m = Map("cpulimit", translate("cpulimit"),translate("cpulimit  "))
 s = m:section(TypedSection, "list", translate("Settings"))
 s.template = "cbi/tblsection"
 s.anonymous = true
@@ -34,5 +33,6 @@ limit:value("40","40%")
 limit:value("30","30%")
 limit:value("20","20%")
 limit:value("10","10%")
+
 
 return m
