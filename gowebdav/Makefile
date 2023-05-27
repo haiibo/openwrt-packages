@@ -1,22 +1,22 @@
 # SPDX-License-Identifier: GPL-3.0-only
 #
-# Copyright (C) 2021-2023 ImmortalWrt.org
+# Copyright (C) 2021 ImmortalWrt.org
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gowebdav
-PKG_VERSION:=0.0.5
-PKG_RELEASE:=2
+PKG_VERSION:=0.0.4
+PKG_RELEASE:=$(AUTORELEASE)
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/1715173329/gowebdav/tar.gz/v$(PKG_VERSION)?
-PKG_HASH:=ee0ac5a52a3b7a1e1c687b850c3f7b55e10bbdc88da0b6b1dd8b790fc53d10c6
+PKG_HASH:=138dcb660ecc0b256700845fd5edb78fdefc60fe853578cc264cf31bab164d0d
 
 PKG_MAINTAINER:=Tianling Shen <cnsztl@immortalwrt.org>
 
 PKG_BUILD_DEPENDS:=golang/host
 PKG_BUILD_PARALLEL:=1
-PKG_BUILD_FLAGS:=no-mips16
+PKG_USE_MIPS16:=0
 
 GO_PKG:=github.com/1715173329/gowebdav
 
@@ -43,8 +43,6 @@ define Package/gowebdav/install
 	$(INSTALL_CONF) $(CURDIR)/files/gowebdav.config $(1)/etc/config/gowebdav
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) $(CURDIR)/files/gowebdav.init $(1)/etc/init.d/gowebdav
-	$(INSTALL_DIR) $(1)/etc/uci-defaults
-	$(INSTALL_BIN) $(CURDIR)/files/gowebdav-migrate-config.sh $(1)/etc/uci-defaults/90-gowebdav-migrate-config
 endef
 
 $(eval $(call GoBinPackage,gowebdav))
