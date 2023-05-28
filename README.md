@@ -13,7 +13,9 @@
 
 - 自动同步上游源码，一键拉取直接编译，不用再一个个找插件
 
-- 科学上网依赖全部同步在 `helloworld` 目录内，无需再额外拉取
+- SSR Plus+ 依赖全部同步在 `helloworld` 目录内，无需再额外拉取
+
+- PassWall 依赖全部同步在 `openwrt-passwall` 目录内，无需再额外拉取
 
 - 所有插件都为 GITHUB 上收集的开源插件，感谢作者们的付出
 
@@ -34,7 +36,8 @@ make menuconfig
 ### 插件说明
 | 插件 | 说明 |
 | ------------- | ------------- |
-| helloworld | SSR Plus+ PassWall 插件依赖 |
+| helloworld | SSR Plus+ 插件依赖 |
+| openwrt-passwall | PassWall 插件依赖 |
 | luci-app-adguardhome | AdGuard Home 去广告 |
 | luci-app-advanced | 系统高级设置 |
 | luci-app-aliddns | 阿里云 DDNS 插件 |
