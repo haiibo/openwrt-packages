@@ -1,13 +1,13 @@
 # SPDX-License-Identifier: GPL-3.0-only
 #
-# Copyright (C) 2021-2022  sirpdboy  <herboy2008@gmail.com> https://github.com/sirpdboy/luci-app-ddnsgo 
+# Copyright (C) 2021-2023  sirpdboy  <herboy2008@gmail.com> https://github.com/sirpdboy/luci-app-ddns-go 
 # 
 # This is free software, licensed under the Apache License, Version 2.0 .
 #
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=ddnsgo
+PKG_NAME:=ddns-go
 PKG_VERSION:=5.3.6
 PKG_RELEASE:=1
 
@@ -36,7 +36,7 @@ GO_PKG_LDFLAGS_X:=m.version=$(PKG_VERSION)
 include $(INCLUDE_DIR)/package.mk
 include $(TOPDIR)/feeds/packages/lang/golang/golang-package.mk
 
-define Package/ddnsgo
+define Package/ddns-go
   TITLE:=A Linux web GUI client of ddns-go
   SECTION:=net
   CATEGORY:=Network
@@ -84,11 +84,11 @@ define Package/$(PKG_NAME)/install
 	$(call GoPackage/Package/Install/Bin,$(1))
 
 	$(INSTALL_DIR) $(1)/etc/init.d
-	$(INSTALL_BIN) ./file/ddnsgo.init $(1)/etc/init.d/ddnsgo
+	$(INSTALL_BIN) ./file/ddns-go.init $(1)/etc/init.d/ddns-go
 
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_BIN) ./file/luci-ddns-go.uci-default $(1)/etc/uci-defaults/luci-ddns-go
 endef
 
-$(eval $(call GoBinPackage,ddnsgo))
-$(eval $(call BuildPackage,ddnsgo))
+$(eval $(call GoBinPackage,ddns-go))
+$(eval $(call BuildPackage,ddns-go))
