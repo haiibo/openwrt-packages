@@ -2,14 +2,12 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=homebox
 PKG_VERSION:=0.0.0-dev.2020062901
-PKG_RELEASE:=2
+PKG_RELEASE:=14
 
 PKG_SOURCE_URL_FILE:=v$(PKG_VERSION).tar.gz
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_GIT_URL:=github.com/XGHeaven/homebox
-PKG_GIT_REF:=v$(PKG_VERSION)
-PKG_SOURCE_URL:=https://codeload.$(PKG_GIT_URL)/tar.gz/$(PKG_GIT_REF)?
-PKG_HASH:=815a2a0fc5458245769648ef5b394f69fdec2573a1403b789146be0c4217a443
+PKG_SOURCE_URL:=https://github.com/XGHeaven/homebox/archive/refs/tags/
+PKG_HASH:=skip
 
 PKG_BUILD_DEPENDS:=golang/host homebox/host
 PKG_BUILD_PARALLEL:=1
@@ -64,22 +62,8 @@ define Build/Compile
 endef
 
 define Package/$(PKG_NAME)/install
-	$(INSTALL_DIR) $(1)/usr/bin $(1)/etc/config $(1)/etc/init.d $(1)/etc/uci-defaults
+	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build/server $(1)/usr/bin/homebox
-	$(INSTALL_CONF) ./files/homebox.config $(1)/etc/config/homebox
-	$(INSTALL_BIN) ./files/homebox.init $(1)/etc/init.d/homebox
-	$(INSTALL_BIN) ./files/homebox.uci-default $(1)/etc/uci-defaults/homebox
-endef
-
-define Package/$(PKG_NAME)/conffiles
-/etc/config/homebox
-endef
-
-define Package/$(PKG_NAME)/postinst
-#!/bin/sh
-if [ -z "$${IPKG_INSTROOT}" ]; then
-	[ -f /etc/uci-defaults/homebox ] && /etc/uci-defaults/homebox && rm -f /etc/uci-defaults/homebox
-fi
 endef
 
 define Host/Configure
@@ -99,4 +83,3 @@ endef
 
 $(eval $(call HostBuild))
 $(eval $(call BuildPackage,homebox))
-

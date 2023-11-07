@@ -1,25 +1,19 @@
+#
+# Copyright (C) 2008-2022 The LuCI Team
+#
+# This is free software, licensed under the Apache License, Version 2.0.
+#
+# Converted by ximitech
+
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=luci-app-msd_lite
-PKG_VERSION:=20220830
+PKG_VERSION:=20221214
+PKG_RELEASE:=1
 
-include $(INCLUDE_DIR)/package.mk
+LUCI_TITLE:=LuCI support for Multi Stream Daemon Lite
+LUCI_DEPENDS:=+msd_lite +luci-compat
+LUCI_PKGARCH:=all
 
-define Package/luci-app-msd_lite
- 	SECTION:=luci
-	CATEGORY:=LuCI
-	SUBMENU:=3. Applications
-	TITLE:=msd_lite web config
-	PKGARCH:=all
-	DEPENDS:=+msd_lite
-endef
+include $(TOPDIR)/feeds/luci/luci.mk
 
-define Build/Compile
-endef
-
-define Package/luci-app-msd_lite/install
-	$(INSTALL_DIR) $(1)/usr/lib/lua/luci
-	cp -pR ./luasrc/* $(1)/usr/lib/lua/luci
-endef
-
-$(eval $(call BuildPackage,luci-app-msd_lite))
+# call BuildPackage - OpenWrt buildroot signature
