@@ -173,7 +173,6 @@ local function processData(szType, content)
 		result.server = info.add
 		result.server_port = info.port
 		result.transport = info.net
-		result.alter_id = info.aid
 		result.vmess_id = info.id
 		result.alias = info.ps
 		-- result.mux = 1
@@ -228,6 +227,10 @@ local function processData(szType, content)
 			result.insecure = 1
 		else
 			result.tls = "0"
+		end
+		-- https://www.v2fly.org/config/protocols/vmess.html#vmess-md5-认证信息-淘汰机制
+		if info.aid and (tonumber(info.aid) > 0) then
+			result.server = nil
 		end
 	elseif szType == "ss" then
 		local idx_sp = 0
