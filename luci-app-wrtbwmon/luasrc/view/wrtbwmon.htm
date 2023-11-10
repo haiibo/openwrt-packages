@@ -6,8 +6,10 @@
 	local util = require "luci.util"
 	local stat = require "luci.tools.status"
 	local fs = require "nixio.fs"
+	local bdwup = luci.model.uci.cursor():get("wrtbwmon", "general", "bdwup")
+	local bdwdown = luci.model.uci.cursor():get("wrtbwmon", "general", "bdwdown")
 	local dba = luci.model.uci.cursor():get("wrtbwmon", "general", "path")
-
+	local SYS = require "luci.sys"
 --	Function to generate table from string.
 	local function strToTable(str)
 		local tb = {}
@@ -117,16 +119,22 @@
 		display: none;
 	}
 
+.tr:hover {
+	background-color: rgba(248, 248, 248,0.4);
+}
 	.tr.table-totals {
 		background: #eee !important;
 	}
 
 	.cbi-progressbar {
+		width:99%;
 		position: relative;
-		height: 18px;
-		margin: 3px 0;
+		height: 22px;
+		margin: 1px;
 		border: thin solid #999;
-		background: #fff;
+		background: rgba(0, 0, 0, 0.08);
+		font-size: 0.8rem !important;
+		text-align: center;
 	}
 
 	.cbi-progressbar > div {
@@ -135,86 +143,56 @@
 		transition: width .1s ease-in;
 	}
 
-	.cbi-progressbar::after {
-		line-height: normal;
-		position: absolute;
-		bottom 0;
-		left 0;
-		right 0;
-		top 0;
-		overflow: hidden;
-		content: attr(title);
-		text-align: center;
-		white-space: pre;
-		text-overflow: ellipsis;
-	}
+.cbi-section {
+	line-height: 1rem;
+	font-size: 0.8rem;
+}
 
 </style>
 
 <div class="cbi-map">
-	<h2><%:Usage - Details%></h2>
-
 	<div class="cbi-section">
-		<div class="table">
-			<div class="tr">
-				<div class="td left" style="width:10%"><label><%:protocol:%></label></div>
-				<div class="td left" style="width:30%">
-					<select id="Select46" style="width:auto">
-						<option value="ipv4" selected="selected">ipv4</option>
-						<option value="ipv6">ipv6</option>
-					</select>
-				</div>
-				<div class="td left" style="width:10%"><label for="isShow"><%:Show Zeros:%></label></div>
-				<div class="td left" style="width:30%">
-					<input class="cbi-input-checkbox" type="checkbox" id="isShow"/>
-				</div>
-				<div class="td right">
-					<input type="button" id="resetDatabase" class="cbi-button" value="<%:Reset Database%>"/>
-				</div>
+		<div class="tr">
+			<div class="td left" style="width:10%"><label><%:protocol:%></label></div>
+			<div class="td left" style="width:20%">
+				<select id="Select46" style="width:auto">
+					<option value="ipv4" selected="selected">ipv4</option>
+					<option value="ipv6">ipv6</option>
+				</select>
 			</div>
-			<div class="tr">
-				<div class="td left" style="width:10%"><label><%:bandwidth:%></label></div>
-				<div class="td left" style="width:30%">
-					<input type="text" id="setBD" value="100M" /><label id="checkBD"></label>
-				</div>
-				<div class="td left" style="width:10%">
-					<label for="showMore"><%:Show More:%></label>
-				</div>
-				<div class="td left" style="width:30%">
-					<input class="cbi-input-checkbox" type="checkbox" id="showMore"/>
-				</div>
-				<div class="td"></div>
-			</div>
-		</div>
-	</div>
 
-	<div class="cbi-section">
-		<div class="table">
-			<div class="tr">
-				<div class="td left" style="width:70%">
-					<small><div id="updated" style="display:inline"></div><div id="updating" style="display:inline"></div></small>
-				</div>
+			<div class="td left" style="width:10%"><label for="showMore"><%:Show More:%></label></div>
+			<div class="td left" style="width:20%"><input class="cbi-input-checkbox" type="checkbox" id="showMore"/></div>
+
+
+			<div class="td left" style="width:10%">
+				<small><div id="updated" style="display:inline"></div><div id="updating" style="display:inline"></div></small>
+			</div>
 				<div class="td right" style="width:30%">
-					<label for="intervalSelect"><%:Auto update every%></label>
+				<label for="intervalSelect"><%:Auto update every%></label>
 					<select id="intervalSelect">
 						<option value="-1"><%:Disabled%></option>
 						<option value="1"><%:1 second%></option>
 						<option value="2"  selected="selected"><%:2 seconds%></option>
 						<option value="5"><%:5 seconds%></option>
+						<option value="8"><%:8 seconds%></option>
 						<option value="10"><%:10 seconds%></option>
-						<option value="20"><%:20 seconds%></option>
-						<option value="30"><%:30 seconds%></option>
-						<option value="60"><%:60 seconds%></option>
-						<option value="120"><%:2 minutes%></option>
-					</select>
-				</div>
+				</select>
 			</div>
-		</div>
 
-		<div class="table">
-			<div class="tr"><div class="td left" width="10%"><%:upflow:%></div><div class="td left" style="width:90%"><div id="upflow" class="cbi-progressbar" title="-"><div></div></div></div></div>
-			<div class="tr"><div class="td left" width="10%"><%:downflow:%></div><div class="td left"  style="width:90%"><div id="downflow" class="cbi-progressbar" title="-"><div></div></div></div></div>
+			<div class="td left" style="width:5%"><label></label></div>
+			<div class="td right"><input type="button" id="resetDatabase" class="cbi-button" value="<%:Reset Database%>"/></div>
 		</div>
+	</div>
+
+	<div class="cbi-section">
+		<legend><%:Online Users%><%:: %><%=luci.sys.exec("sysinfo user")%></legend>
+		<div class="td"></div>
+		<div class="table">
+			<div class="tr"><div class="td left" width="10%"><%:upflow:%><%=bdwup%></div><div class="td left" style="width:90%"><div id="upflow" class="cbi-progressbar" title="-"><div></div></div></div></div>
+			<div class="tr"><div class="td left" width="10%"><%:downflow:%><%=bdwdown%></div><div class="td left"  style="width:90%"><div id="downflow" class="cbi-progressbar" title="-"><div></div></div></div></div>
+		</div>
+		<div class="td"></div>
 
 		<div class="table" id="traffic">
 			<div class="tr table-titles">
@@ -272,7 +250,7 @@
 	}
 
 	function displayTable(eltid) {
-		var tb = $('traffic'), bdw = parseSize($('setBD').value);
+		var tb = $('traffic'), bdwupx = parseSize("<%=bdwup%>"),bdwdownx = parseSize("<%=bdwdown%>");
 		var col = setSortColumn(eltid);
 
 		cachedData[0].sort(function(x, y) {
@@ -285,14 +263,15 @@
 //		display data
 //		console.time('update_table');
 		updateTable(tb, cachedData, '<em><%:Loading...%></em>');
-//		console.timeEnd('update_table');
-
-		progressbar('downflow', cachedData[1][0], bdw, true);
-		progressbar('upflow', cachedData[1][1], bdw, true);
+// 		console.timeEnd('update_table');
+		progressbar('downflow', cachedData[1][0], bdwdownx, true);
+		progressbar('upflow', cachedData[1][1], bdwupx, true);
 		return
 	}
+			
 
 	function updateTable(tb, values, placeholder) {
+	
 		var dom = document.createDocumentFragment(), nodeLen = tb.childElementCount - 2;
 		var tbData = values[0], shadowNode, newNode, childTD, tabTitle = tb.firstElementChild;
 		var showMore = $('showMore').checked;
@@ -313,6 +292,7 @@
 				shadowNode.firstElementChild.appendChild(document.createTextNode(''));
 			}
 		}
+		// Update the table data.
 		for (var i = 0; i < tbData.length; i++) {
 			if (i < nodeLen) {
 				newNode = tabTitle.nextElementSibling;
@@ -321,7 +301,8 @@
 				newNode.className = 'tr cbi-rowstyle-%d'.format(i % 2 ? 2 : 1);
 			}
 			childTD = newNode.firstElementChild;
-			childTD.title = tbData[i][1].toUpperCase();
+			childTD.title = tbData[i][1].toUpperCase() ;
+
 			childTD.lastChild.nodeValue = tbData[i].slice(-1);
 			if (childTD.lastChild.nodeValue == 'NA')tbData[i][0]='LAN-WAN';
 		for (var j = 0; j < tabTitle.childElementCount; j++, childTD = childTD.nextElementSibling){
@@ -412,7 +393,7 @@
 			fv = byte ? String.format('%1024.2mB', v) : v,
 			pc = ((100 / mn) * vn).toFixed(2),
 			wt = Math.floor(pc > 100 ? 100 : pc),
-			bgc = (pc >= 95 ? "red" : (pc >= 80 ? "magenta" : (pc >= 60 ? "yellow" : "lime")));
+			bgc = (pc >= 95 ? "#ff3300" : (pc >= 90 ? "#ff6600" : (pc >= 75 ? "#99cc00" : (pc >= 50 ? "#669900" : "#00cc33"))));
 
 		if (pg) {
 			pg.firstElementChild.style.width = wt + '%';
@@ -457,26 +438,10 @@
 			}
 		});
 
-		$('setBD').addEventListener('input', function () {
-			var strTest = (/^[0-9]+\.?[0-9]*[\s]*[KMGTP]?B?(\/s)?$/g).test(this.value);
-			$("checkBD").innerHTML = strTest ? '\u2714' : '\u2716';
-		});
-
-		$('setBD').addEventListener('focusout', function () {
-			if ($("checkBD").innerHTML == '\u2716') {
-				alert('Error! Bandwidth reset!!!');
-				this.value = '1M';
-			}
-			$("checkBD").innerHTML = "";
-		});
-
 		$('Select46').addEventListener('change', function () {
 			XHR._q[0].data["proto"] = this.value;
 		});
 
-		$('isShow').addEventListener('click', function () {
-			XHR._q[0].data["isShow"] = this.checked ? 1 : 0;
-		});
 
 		$('showMore').addEventListener('click', function () {
 			var tot = document.querySelector('.tr.table-totals').firstElementChild;
@@ -496,7 +461,7 @@
 		var interval = $('intervalSelect').value;
 		var status = {
 			proto: $('Select46').value,
-			isShow: 0
+			isShow: 1
 		}
 
 		XHR.poll(interval, '<%=REQUEST_URI%>', status,
@@ -509,8 +474,6 @@
 
 				// Display the sorted values.
 				displayTable(null);
-
-				$('updated').innerHTML = '<%:Last updated %>' + dateToString(Math.round(Date.now() / 1000)) +'<%:.%> ';
 			}
 //			console.timeEnd('start');
 		});
@@ -519,13 +482,11 @@
 
 	function updatePerSec() {
 		var post;
-		XHR.poll(1, "", "", function(x, data) {
+		XHR.poll(3, "", "", function(x, data) {
 			var itv = XHR._q[0].interval;
 			var sec = XHR._t % itv ? itv - XHR._t % itv : 0;
-			setUpdateMessage('<%:Updating again in%> <b>' + sec + '</b> <%:seconds.%>');
 			if(sec == 0) {
 				setTimeout(function() {
-					setUpdateMessage('<%:Updating again in%> <b>' + XHR._q[0].interval + '</b> <%:seconds.%>');
 				}, 50);
 			}
 		}, post);
