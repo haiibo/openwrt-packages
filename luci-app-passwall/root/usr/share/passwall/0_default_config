@@ -39,17 +39,17 @@ config global_forwarding
 	option use_nft '0'
 	option tcp_proxy_way 'redirect'
 	option ipv6_tproxy '0'
-	
+
 config global_xray
 	option sniffing '1'
 	option route_only '0'
-	
+
 config global_singbox
 	option sniff_override_destination '0'
 	option geoip_path '/usr/share/singbox/geoip.db'
-	option geoip_url 'https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db'
+	option geoip_url 'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.db'
 	option geosite_path '/usr/share/singbox/geosite.db'
-	option geosite_url 'https://github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db'
+	option geosite_url 'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.db'
 
 config global_other
 	option nodes_ping 'auto_ping tcping'
@@ -69,7 +69,6 @@ config global_rules
 	list chnroute6_url 'https://fastly.jsdelivr.net/gh/gaoyifan/china-operator-ip@ip-lists/china6.txt'
 	list chnlist_url 'https://fastly.jsdelivr.net/gh/felixonmars/dnsmasq-china-list/accelerated-domains.china.conf'
 	list chnlist_url 'https://fastly.jsdelivr.net/gh/felixonmars/dnsmasq-china-list/apple.china.conf'
-	list chnlist_url 'https://fastly.jsdelivr.net/gh/felixonmars/dnsmasq-china-list/google.china.conf'
 	option v2ray_location_asset '/usr/share/v2ray/'
 
 config global_app
@@ -105,8 +104,7 @@ config shunt_rules 'DirectGame'
 	option domain_list 'api.steampowered.com
 regexp:\.cm.steampowered.com$
 regexp:\.steamserver.net$
-geosite:category-games@cn
-'
+geosite:category-games@cn'
 	option ip_list '103.10.124.0/24
 103.10.125.0/24
 103.28.54.0/24
@@ -156,13 +154,12 @@ geosite:category-games@cn
 
 config shunt_rules 'ProxyGame'
 	option remarks 'ProxyGame'
-	option domain_list 'geosite:category-games@!cn
-domain:store.steampowered.com
-'
+	option domain_list 'geosite:category-games
+domain:store.steampowered.com'
 
 config shunt_rules 'OpenAI'
 	option remarks 'OpenAI'
-	option domain_list 'geosite:openai'	
+	option domain_list 'geosite:openai'
 
 config shunt_rules 'Proxy'
 	option remarks 'Proxy'
